@@ -1,0 +1,43 @@
+[versions]
+inject = "1"
+timber = "5.0.1"
+dagger = "2.50"
+core-ktx = "1.12.0"
+material = "1.11.0"
+fragment = "1.6.2"
+activity = "1.8.2"
+leakcanary = "2.13"
+lifecycle = "2.7.0"
+appcompat = "1.6.1"
+coroutines = "1.7.3"
+navigation = "2.7.6"
+annotation = "1.7.1"
+constraintlayout = "2.1.4"
+kotlin-serialization = "1.6.2"
+
+[libraries]
+inject = { module = "javax.inject:javax.inject", version.ref = "inject" }
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
+fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
+
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "dagger" }
+
+lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "lifecycle" }
+lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+
+leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
+leakcanary-plumber-android = { module = "com.squareup.leakcanary:plumber-android", version.ref = "leakcanary" }
+
+navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
+navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
