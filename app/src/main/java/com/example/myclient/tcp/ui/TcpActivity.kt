@@ -1,5 +1,6 @@
 package com.example.myclient.tcp.ui
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
@@ -7,14 +8,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.myclient.databinding.ActivityTcpBinding
 import com.example.myclient.tcp.TcpClient4
+import com.example.myclient.tcp.discovery.NsdChatActivity
+import com.example.myclient.tcp.discovery.TcpDiscovery
+//import com.example.myclient.tcp.nsd.NsdChatActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 
 class TcpActivity : AppCompatActivity() {
 
     private lateinit var tcpClient4: TcpClient4
+//    private lateinit var tcpDiscovery: TcpDiscovery
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +33,8 @@ class TcpActivity : AppCompatActivity() {
         binding.hostInput.setText("tcpbin.com")
         binding.portInput.setText("4242")
         binding.sendInput.setText("Hello TCP Client Test!")
+
+//        tcpDiscovery = TcpDiscovery(applicationContext)
 
         tcpClient4 = TcpClient4(
             binding.hostInput.text.toString(),
@@ -89,13 +97,19 @@ class TcpActivity : AppCompatActivity() {
             }
         }
 
-        binding.receiveButton.setOnClickListener {
+        binding.discoverButton.setOnClickListener {
 //            Thread {
 //                tcpClient4.receiveMessages()
 //            }.start()
-            lifecycleScope.launch(Dispatchers.IO) {
-                tcpClient4.observe()
-            }
+//            lifecycleScope.launch(Dispatchers.IO) {
+//                tcpClient4.observe()
+//            }
+            Timber.v("MY_TEST: disconnectButton Clicked discoverServices")
+//            lifecycleScope.launch(Dispatchers.IO) {
+//                tcpDiscovery.startDiscoverServices()
+//            }
+//            startActivity(Intent(applicationContext, TcpDiscoveryActivity::class.java))
+            startActivity(Intent(applicationContext, NsdChatActivity::class.java))
         }
 
         binding.disconnectButton.setOnClickListener {
@@ -110,5 +124,6 @@ class TcpActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
             tcpClient4.disconnect()
         }
+//        tcpDiscovery.stop()
     }
 }

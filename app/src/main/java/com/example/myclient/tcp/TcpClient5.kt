@@ -5,7 +5,7 @@ import java.io.InputStreamReader
 import java.io.OutputStream
 import java.net.Socket
 
-class TcpClient(private val host: String, private val port: Int) {
+class TcpClient5(private val host: String, private val port: Int) {
 
     private var socket: Socket? = null
     private var reader: BufferedReader? = null

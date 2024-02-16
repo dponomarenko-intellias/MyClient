@@ -87,11 +87,11 @@
         app:layout_constraintTop_toBottomOf="@+id/sendInput" />
 
     <Button
-        android:id="@+id/receiveButton"
+        android:id="@+id/discoverButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Receive"
+        android:text="Discover"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sendButton" />
@@ -106,7 +106,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/receiveButton" />
+        app:layout_constraintTop_toBottomOf="@+id/discoverButton" />
 
     <TextView
         android:id="@+id/receivedMessage"

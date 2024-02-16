@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.myclient.ble.ui.BleActivity
 import com.example.myclient.bluetooth.BluetoothActivity
 import com.example.myclient.tcp.ui.TcpActivity
+import com.example.myclient.tcp.ui.TcpDiscoveryActivity
 import com.example.myclient.usb.UsbActivity
 
 class MainActivity : AppCompatActivity() {
