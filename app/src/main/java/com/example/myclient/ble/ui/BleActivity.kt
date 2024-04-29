@@ -16,6 +16,9 @@ import android.bluetooth.BluetoothProfile
 import android.bluetooth.le.AdvertiseCallback
 import android.bluetooth.le.AdvertiseData
 import android.bluetooth.le.AdvertiseSettings
+import android.bluetooth.le.AdvertisingSet
+import android.bluetooth.le.AdvertisingSetCallback
+import android.bluetooth.le.AdvertisingSetParameters
 import android.bluetooth.le.BluetoothLeAdvertiser
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
@@ -29,7 +32,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
+import android.os.ParcelUuid
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -37,8 +40,9 @@ import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myclient.databinding.ActivityBleBinding
 import timber.log.Timber
-import java.util.Base64
+import java.nio.charset.Charset
 import java.util.Locale
+
 
 private const val REQUEST_PERMISSIONS_ALL = 99
 private const val REQUEST_PERMISSION_BLE_SCAN = 101
@@ -68,6 +72,11 @@ class BleActivity : AppCompatActivity() {
             // Implement callback methods for GATT events
             override fun onConnectionStateChange(gatt: BluetoothGatt?, status: Int, newState: Int) {
                 super.onConnectionStateChange(gatt, status, newState)
+                Toast.makeText(
+                    applicationContext,
+                    "onConnectionStateChange status = $status, gatt: " + gatt.toString(),
+                    Toast.LENGTH_LONG
+                ).show()
                 if (status == GATT_SUCCESS) {
                     if (newState == BluetoothProfile.STATE_CONNECTED) {
                         val bondstate = device.bondState
@@ -214,20 +223,54 @@ class BleActivity : AppCompatActivity() {
         val settings = AdvertiseSettings.Builder()
             .setAdvertiseMode(AdvertiseSettings.ADVERTISE_MODE_LOW_LATENCY)
             .setTxPowerLevel(AdvertiseSettings.ADVERTISE_TX_POWER_HIGH)
-            .setConnectable(false)
+            .setConnectable(true)
             .build()
+
+        val parameters = AdvertisingSetParameters.Builder()
+//            .setLegacyMode(true) // True by default, but set here as a reminder.
+            .setConnectable(true)
+            .setInterval(AdvertisingSetParameters.INTERVAL_HIGH)
+            .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_MEDIUM)
+            .build()
+
+        val readUUID = "49535343-1e4d-4bd9-ba61-23c647249616"
+        val pUuid = ParcelUuid.fromString(readUUID)
 
         val data = AdvertiseData.Builder()
             .setIncludeDeviceName(true)
+//            .addServiceUuid(ParcelUuid(GattService.MyServiceProfile.MY_SERVICE_UUID))
+            .addServiceUuid(pUuid)
+            .addServiceData( pUuid, "TestData".toByteArray(Charset.forName("UTF-8") ) )
             .build()
 
-        bluetoothLeAdvertiser?.startAdvertising(settings, data, advertiseCallback)
+        val callback: AdvertisingSetCallback = object : AdvertisingSetCallback() {
+            override fun onAdvertisingSetStarted(
+                advertisingSet: AdvertisingSet,
+                txPower: Int,
+                status: Int
+            ) {
+                Timber.v("onAdvertisingSetStarted(): txPower: $txPower, status: $status")
+                // Keep track of the advertising set.
+//                currentAdvertisingSet = advertisingSet
+            }
+
+            override fun onAdvertisingDataSet(advertisingSet: AdvertisingSet, status: Int) {
+                Timber.v("onAdvertisingDataSet(): status: $status")
+                // Advertising data has been set.
+
+
+            } // Other callback methods...
+        }
+
+//        bluetoothLeAdvertiser?.startAdvertising(settings, data, advertiseCallback)
+        bluetoothLeAdvertiser?.startAdvertisingSet(parameters, data, null, null, null, callback);
     }
 
     private val advertiseCallback = object : AdvertiseCallback() {
         override fun onStartSuccess(settingsInEffect: AdvertiseSettings?) {
             super.onStartSuccess(settingsInEffect)
             // Advertising started successfully
+            Toast.makeText(applicationContext, "onStartSuccess settingsInEffect = " + settingsInEffect.toString(), Toast.LENGTH_LONG).show()
         }
 
         override fun onStartFailure(errorCode: Int) {

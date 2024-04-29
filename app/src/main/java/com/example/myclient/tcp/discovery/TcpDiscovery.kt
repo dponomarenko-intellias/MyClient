@@ -7,7 +7,7 @@ import timber.log.Timber
 import java.net.InetAddress
 
 
-private const val SERVICE_TYPE = "_incredibles._tcp."
+private const val SERVICE_TYPE = "_cricut._tcp."
 
 class TcpDiscovery(
     context: Context,

@@ -46,7 +46,17 @@
         <activity android:name=".ble.ui.BleActivity" />
 <!--        <activity android:name=".ble.ui.DeviceControlActivity" />-->
 <!--        <activity android:name=".ble.ui.DeviceScanActivity" />-->
-        <activity android:name=".usb.UsbActivity" />
+        <activity
+            android:name=".usb.UsbActivity"
+            android:exported = "true"
+            >
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/device_filter" />
+        </activity>
         <activity android:name=".tcp.discovery.NsdChatActivity" />
         <activity android:name=".tcp.ui.TcpDiscoveryActivity" />
 

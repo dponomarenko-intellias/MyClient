@@ -128,7 +128,7 @@ class NsdHelper(var mContext: Context) {
     }
 
     companion object {
-        const val SERVICE_TYPE = "_incredibles._tcp."
+        const val SERVICE_TYPE = "_cricut._tcp."
         const val TAG = "NsdHelper"
     }
 }

@@ -14,6 +14,10 @@ navigation = "2.7.6"
 annotation = "1.7.1"
 constraintlayout = "2.1.4"
 kotlin-serialization = "1.6.2"
+usb-serial-android = "3.7.0"
+nordic-ble-client = "1.0.15"
+nordic-ble = "2.7.4"
+kotlin-io-core = "0.3.2"
 
 [libraries]
 inject = { module = "javax.inject:javax.inject", version.ref = "inject" }
@@ -26,6 +30,12 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
+usb-serial-android = { module = "com.github.mik3y:usb-serial-for-android", version.ref = "usb-serial-android" }
+nordic-ble-client = { module = "no.nordicsemi.android.kotlin.ble:client", version.ref = "nordic-ble-client" }
+nordic-ble-advetiser = { module = "no.nordicsemi.android.kotlin.ble:advertiser", version.ref = "nordic-ble-client" }
+nordic-ble-server = { module = "no.nordicsemi.android.kotlin.ble:server", version.ref = "nordic-ble-client" }
+nordic-ble = { module = "no.nordicsemi.android:ble", version.ref = "nordic-ble" }
+kotlin-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlin-io-core" }
 
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }

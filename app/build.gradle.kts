@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.myclient"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -44,7 +44,6 @@ android {
     }
 }
 
-
 dependencies {
 //    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
     implementation(libs.coroutines.android)
@@ -55,6 +54,12 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.timber)
+    implementation(libs.usb.serial.android)
+    implementation(libs.nordic.ble.client)
+    implementation(libs.nordic.ble.advetiser)
+    implementation(libs.nordic.ble.server)
+    implementation(libs.nordic.ble)
+    implementation(libs.kotlin.io.core)
 
     implementation(libs.dagger)
     ksp(libs.dagger.compiler)

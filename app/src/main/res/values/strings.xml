@@ -26,4 +26,9 @@
     <string name="discover">Discover</string>
     <string name="register">Register</string>
     <string name="send">Send</string>
+
+    <string name="gatt_service_name">BLE Gatt Service</string>
+    <string name="gatt_service_description">A background BLE GATT service</string>
+    <string name="gatt_service_running_notification">\"Advertising BLE GATT service\"</string>
+    <string name="value_for_characteristic">Value for characteristic</string>
 </resources>
